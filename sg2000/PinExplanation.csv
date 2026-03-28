@@ -1,0 +1,149 @@
+﻿"The chip primarily features four types of IO pins. Here are the electrical specifications for the pins
+1. 1.8V IO
+2. 18OD33 IO (1.8V mode & 3.0V mode)
+3. Audio GPIO
+4. ETH GPIO",,,,,
+,,,,,
+1. 1.8V IO,,,,,
+Parameter ,,Min ,Typ ,Max ,Unit 
+VIL ,Input Low voltage ,-0.3 ,,0.35xVDDIO ,V 
+VIH ,Input High voltage ,0.65*VDDIO ,,1.98 ,V 
+VT (no pull) ,Threshold voltage when ST[1:0] = 00  ,0.75 ,0.91 ,1.09 ,V 
+VT_PU ,(no schmit trigger)  ,0.74 ,0.90 ,1.08 ,
+VT_PD ,,0.76 ,0.92 ,1.10 ,
+VT+ ,Threshold voltage when ST[1:0] = 01 ,0.82 ,0.97 ,1.13 ,V 
+VT- ,,0.72 ,0.85 ,1.02 ,
+VT+_PU ,,0.81 ,0.96 ,1.12 ,
+VT-_PU ,,0.71 ,0.84 ,1.01 ,
+VT+_PD ,,0.82 ,0.98 ,1.14 ,
+VT-_PD ,,0.73 ,0.86 ,1.03 ,
+VT+ ,Threshold voltage when ST[1:0] = 1X ,0.87 ,1.04 ,1.19 ,V 
+VT- ,,0.69 ,0.80 ,0.95 ,
+VT+_PU ,,0.86 ,1.03 ,1.18 ,
+VT-_PU ,,0.68 ,0.79 ,0.94 ,
+VT+_PD ,,0.88 ,1.05 ,1.20 ,
+VT-_PD ,,0.69 ,0.81 ,0.96 ,
+Il ,Input leakage (VI = 1.8V or 0V) ,,,+/-10u ,A 
+IOZ ,Tri-state output leakage current (VO=1.8V or 0V) ,,,+/-10u ,A 
+RPU ,Pull up resistor ,55k ,79k ,121k ,Ω 
+RPD ,Pull down resistor ,51k ,87k ,169k ,Ω 
+VOL ,Output low voltage ,,,0.45 ,V 
+VOH ,Output high voltage ,1.35 ,,,V 
+IOL ,Low level output current @ VOL (max) ,,,,
+,DS[1:0] = 00 ,7.6 ,12.8 ,18.0 ,mA 
+,DS[1:0] = 01 ,15.2 ,25.3 ,35.5 ,mA 
+,DS[1:0] = 10 ,22.6 ,37.4 ,52.2 ,mA 
+,DS[1:0] = 11 ,29.7 ,49 ,67.9 ,mA 
+IOH ,High level output current @ VOH (max) ,,,,
+,DS[1:0] = 00 ,4.8 ,10.8 ,18.9 ,mA 
+,DS[1:0] = 01 ,9.5 ,21.5 ,37.4 ,mA 
+,DS[1:0] = 10 ,14.3 ,32.1 ,55.9 ,mA 
+,DS[1:0] = 11 ,18.9 ,42.4 ,73.9 ,mA 
+,,,,,
+2.1 18OD33 IO (VDDIO=1.8V) 电气参数,,,,,
+Parameter ,,Min ,Typ ,Max ,Unit 
+VIL ,Input Low voltage ,-0.3 ,,0.58 ,V 
+VIH ,Input High voltage ,1.27 ,,2.00 ,V 
+VT (no pull) ,Threshold voltage when ST = 0  ,0.91 ,0.97 ,1.03 ,V 
+VT_PU ,(no schmit trigger)  ,0.90 ,0.96 ,1.02 ,
+VT_PD ,,0.91 ,0.97 ,1.06 ,
+VT+ (no pull) ,Threshold voltage when ST = 1 ,1.03 ,1.07 ,1.12 ,V 
+VT- (no pull) ,,0.75 ,0.83 ,0.91 ,
+VT+_PU ,,1.02 ,1.06 ,1.11 ,
+VT-_PU ,,0.74 ,0.82 ,0.90 ,
+VT+_PD ,,1.03 ,1.08 ,1.13 ,
+VT-_PD ,,0.75 ,0.83 ,0.92 ,
+Il ,Input leakage (VI = 1.8V or 0V) ,,,+/-10u ,A 
+IOZ ,Tri-state output leakage current (VO=1.8V or 0V) ,,,+/-10u ,A 
+RPU ,Pull up resistor ,33k ,60k ,92k ,Ω 
+RPD ,Pull down resistor ,34k ,61k ,158k ,Ω 
+VOL ,Output low voltage ,,,0.45 ,V 
+VOH ,Output high voltage ,1.40 ,,,V 
+IOL ,Low level output current @ VOL (max) ,,,,
+,DS[2:0] = 000 ,4.9 ,7.8 ,11.1 ,mA 
+,DS[2:0] = 001 ,7.4 ,11.7 ,16.4 ,mA 
+,DS[2:0] = 010 ,9.8 ,15.5 ,21.7 ,mA 
+,DS[2:0] = 011 ,12.2 ,19.2 ,26.7 ,mA 
+,DS[2:0] = 100 ,14.6 ,23.0 ,31.9 ,mA 
+,DS[2:0] = 101 ,17.0 ,26.6 ,36.8 ,mA 
+,DS[2:0] = 110 ,19.4 ,30.2 ,41.6 ,mA 
+,DS[2:0] = 111 ,21.7  ,33.7 ,46.2 ,mA 
+IOH ,High level output current @ VOH (max) ,,,,
+,DS[2:0] = 000 ,3.6 ,6.2 ,9.5 ,mA 
+,DS[2:0] = 001 ,5.4 ,9.3 ,14.3 ,mA 
+,DS[2:0] = 010 ,7.2 ,12.4 ,19.1 ,mA 
+,DS[2:0] = 011 ,9.0 ,15.4 ,23.8 ,mA 
+,DS[2:0] = 100 ,10.8 ,18.5 ,28.5 ,mA 
+,DS[2:0] = 101 ,12.6 ,21.6 ,33.1 ,mA 
+,DS[2:0] = 110 ,14.4 ,24.6 ,37.8 ,mA 
+,DS[2:0] = 111 ,16.2 ,27.7 ,42.5 ,mA 
+,,,,,
+,,,,,
+2.2 18OD33 IO (VDDIO=3.0V) 电气参数,,,,,
+Parameter ,,Min ,Typ ,Max ,Unit 
+VIL ,Input Low voltage ,-0.3 ,,0.25*VDDIO ,V 
+VIH ,Input High voltage ,0.625*VDDIO ,,3.3 ,V 
+VT (no pull) ,Threshold voltage when ST = 0  ,0.82 ,0.95 ,1.11 ,V 
+VT_PU ,(no schmit trigger)  ,0.81 ,0.93 ,1.09 ,
+VT_PD ,,0.83 ,0.96 ,1.13 ,
+VT+ (no pull) ,Threshold voltage when ST = 1 ,1.00 ,1.10 ,1.23 ,V 
+VT- (no pull) ,,0.75 ,0.90 ,1.08 ,
+VT+_PU ,,1.00 ,1.09 ,1.21 ,
+VT-_PU ,,0.73 ,0.88 ,1.05 ,
+VT+_PD ,,1.01 ,1.11 ,1.25 ,
+VT-_PD ,,0.75 ,0.91 ,1.09 ,
+Il ,Input leakage (VI = 3.0V or 0V) ,,,+/-10u ,A 
+IOZ ,Tri-state output leakage current (VO=3.0V or 0V) ,,,+/-10u ,A 
+RPU ,Pull up resistor ,33k ,60k ,93k ,Ω 
+RPD ,Pull down resistor ,34k ,62k ,285k ,Ω 
+VOL ,Output low voltage ,,,0.125*VDDIO ,V 
+VOH ,Output high voltage ,0.75*VDDIO ,,,V 
+IOL ,Low level output current @ VOL (max) ,,,,
+,DS[2:0] = 000 ,3.1 ,5.5 ,8.6 ,mA 
+,DS[2:0] = 001 ,4.7 ,8.2 ,12.7 ,mA 
+,DS[2:0] = 010 ,6.2 ,10.8 ,16.9 ,mA 
+,DS[2:0] = 011 ,7.7 ,13.4 ,20.8 ,mA 
+,DS[2:0] = 100 ,9.3 ,16.1 ,24.9 ,mA 
+,DS[2:0] = 101 ,10.8 ,18.7 ,28.8 ,mA 
+,DS[2:0] = 110 ,12.3 ,21.2 ,32.6 ,mA 
+,DS[2:0] = 111 ,13.8 ,23.7 ,36.3 ,mA 
+IOH ,High level output current @ VOH (max) ,,,,
+,DS[2:0] = 000 ,5.0 ,7.5 ,10.5 ,mA 
+,DS[2:0] = 001 ,7.5 ,11.2 ,15.7 ,mA 
+,DS[2:0] = 010 ,10.1 ,14.9 ,21.0 ,mA 
+,DS[2:0] = 011 ,12.6 ,18.6 ,26.2 ,mA 
+,DS[2:0] = 100 ,15.1 ,22.3 ,31.4 ,mA 
+,DS[2:0] = 101 ,17.6 ,26.0 ,36.5 ,mA 
+,DS[2:0] = 110 ,20.1 ,29.8 ,41.8 ,mA 
+,DS[2:0] = 111 ,22.6 ,33.4 ,46.9 ,mA 
+,,,,,
+,,,,,
+3. Audio GPIO 电气参数,,,,,
+Parameter ,,Min ,Typ ,Max ,Unit 
+VIL,Input Low voltage,-0.3,,0.55,V
+VIH,Input High voltage,1.2,,1.98,V
+VT+,Threshold voltage with schmitt trigger,0.8,0.95,1.1,V
+VT-,,0.65,0.82,0.99,
+Il,Input leakage (VI = 1.8V or 0V),,,+/-4u,A
+IOZ,Tri-state output leakage current (VO=1.8V or 0V),,,+/-4u,A
+VOL,Output low voltage,,,0.4,V
+VOH,Output high voltage,1.4,,,V
+IOL,Low level output current @ VOL (max),4.9,9.9,18.4,mA
+IOH,High level output current @ VOH (max),11.3,17.1,26.1,mA
+,,,,,
+,,,,,
+,,,,,
+4. ETH GPIO 电气参数,,,,,
+Parameter ,,Min ,Typ ,Max ,Unit 
+VIL,Input Low voltage,-0.3,,0.3*VDD18A,V
+VIH,Input High voltage,0.7*VDD18A,,1.98,V
+VT+,Threshold voltage with schmitt trigger,0.84,0.99,1.14,V
+VT-,,0.66,0.83,1.01,
+Il,Input leakage (VI = 1.8V or 0V),,,+/-1.3u,A
+IOZ,Tri-state output leakage current (VO=1.8V or 0V),,,+/-1.3u,A
+VOL,Output low voltage,,,0.4,V
+VOH,Output high voltage,VDD18A-0.4,,,V
+IOL,Low level output current @ VOL (max) DS=0,8.8,15.7,27.3,mA
+,Low level output current @ VOL (max) DS=1,10.2,17.8,30.5,
+IOH,High level output current @ VOH (max) DS=0,4.0 ,5.3,7.4,mA
+,High level output current @ VOH (max) DS=1,4.7,6.2,8.5,
