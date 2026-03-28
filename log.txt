@@ -1,0 +1,4 @@
+- cloned all relevant repositories to this repo itself
+---
+- switch to RV (physically)
+- get the latest linux image from https://github.com/milkv-duo/duo-buildroot-sdk-v2/releases (sd version)
