@@ -1,0 +1,63 @@
+lib/libnl_3_la-version.lo: lib/version.c \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/stdc-predef.h \
+ include/nl-default.h include/config.h include/base/nl-base-utils.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/byteswap.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/features.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/lib/gcc/riscv64-unknown-linux-musl/10.2.0/include/stdint.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/stdint.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/alltypes.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/stdint.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/stdlib.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/alloca.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/lib/gcc/riscv64-unknown-linux-musl/10.2.0/include/stdarg.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/limits.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/limits.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/inttypes.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/assert.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/unistd.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/posix.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/errno.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/errno.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/string.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/strings.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/lib/gcc/riscv64-unknown-linux-musl/10.2.0/include/stdbool.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/netinet/in.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/sys/socket.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/socket.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/arpa/inet.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/pthread.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/sched.h \
+ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/time.h \
+ include/netlink/version.h
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/stdc-predef.h:
+include/nl-default.h:
+include/config.h:
+include/base/nl-base-utils.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/byteswap.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/features.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/lib/gcc/riscv64-unknown-linux-musl/10.2.0/include/stdint.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/stdint.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/alltypes.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/stdint.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/stdlib.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/alloca.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/lib/gcc/riscv64-unknown-linux-musl/10.2.0/include/stdarg.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/limits.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/limits.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/inttypes.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/assert.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/unistd.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/posix.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/errno.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/errno.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/string.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/strings.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/lib/gcc/riscv64-unknown-linux-musl/10.2.0/include/stdbool.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/netinet/in.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/sys/socket.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/bits/socket.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/arpa/inet.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/pthread.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/sched.h:
+/home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/sysroot/usr/include/time.h:
+include/netlink/version.h:
