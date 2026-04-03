@@ -59,7 +59,21 @@ sudo dd if=milkv-duos-musl-riscv64-sd_v2.0.1.img of=/dev/sdX bs=4M conv=fsync st
 sync
 ```
 
-## 4) First Boot Board Init (new Milk-V)
+## 4) Apply KitFEUP Boot Artifacts (required on first setup)
+
+The base image does not include the timer-interrupt DT/kernel boot artifacts used by this project.
+Before first boot testing, build and copy `boot.sd`:
+
+```sh
+make build-board-image
+sudo mkdir -p /mnt/sdX1
+sudo mount /dev/sdX1 /mnt/sdX1
+sudo cp duo-buildroot-sdk-v2/install/soc_sg2000_milkv_duos_musl_riscv64_sd/boot.sd /mnt/sdX1/boot.sd
+sudo umount /mnt/sdX1
+sync
+```
+
+## 5) First Boot Board Init (new Milk-V)
 
 ```sh
 ssh root@192.168.42.1
@@ -71,7 +85,7 @@ sync
 reboot
 ```
 
-## 5) Sync Built Artifacts to Board
+## 6) Sync Built Artifacts to Board
 
 From host repo root:
 
@@ -93,7 +107,7 @@ rmmod umdp 2>/dev/null || true
 insmod shared/umdp.ko
 ```
 
-## 6) Validate Demos on Board
+## 7) Validate Demos on Board
 
 ```sh
 shared/compiled/blink
@@ -107,7 +121,7 @@ shared/compiled/blink_timer
 shared/compiled/timer_multi
 ```
 
-## 7) Iterative Boot Artifact Updates (no full reflash)
+## 8) Iterative Boot Artifact Updates (no full reflash)
 
 When DT/kernel boot artifacts change:
 
