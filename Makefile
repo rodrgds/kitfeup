@@ -12,10 +12,11 @@ UMDP_DIR ?= $(ROOT_DIR)/patched-umdp/umdp
 
 CROSS_PREFIX ?= $(ROOT_DIR)/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/bin/riscv64-unknown-linux-musl-
 
-.PHONY: help build-libumdp build-umdp-ko build-shared build-all build-board-image sync-compiled sync-umdp-ko sync-all test-smoke dump-runtime-dtb decompile-dtb clean
+.PHONY: help setup-toolchain build-libumdp build-umdp-ko build-shared build-all build-board-image sync-compiled sync-umdp-ko sync-all test-smoke dump-runtime-dtb decompile-dtb clean
 
 help:
 	@printf "KitFEUP automation targets:\n"
+	@printf "  make setup-toolchain - Clone host-tools and build libnl sysroot\n"
 	@printf "  make build-libumdp   - Build libumdp static library\n"
 	@printf "  make build-umdp-ko   - Build UMDP kernel module (umdp.ko)\n"
 	@printf "  make build-shared    - Build all shared user programs into shared/compiled\n"
@@ -29,6 +30,9 @@ help:
 	@printf "  make decompile-dtb    - Decompile runtime/generated DTBs to DTS\n"
 	@printf "\nConfigurable vars:\n"
 	@printf "  BOARD_HOST=%s BOARD_USER=%s BOARD_PASS=%s BOARD_SHARED_DIR=%s\n" "$(BOARD_HOST)" "$(BOARD_USER)" "$(BOARD_PASS)" "$(BOARD_SHARED_DIR)"
+
+setup-toolchain:
+	env ROOT_DIR="$(ROOT_DIR)" $(NIX_SHELL) < "$(ROOT_DIR)/scripts/nix/setup-toolchain.sh"
 
 build-libumdp:
 	env ROOT_DIR="$(ROOT_DIR)" $(NIX_SHELL) < "$(ROOT_DIR)/scripts/nix/build-libumdp.sh"

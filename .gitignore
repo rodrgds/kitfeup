@@ -27,6 +27,8 @@ dist/
 # Local build/deploy artifacts
 shared/compiled/
 shared/umdp.ko
+sysroot/
+libnl-3.9.0/
 *.img
 *.img.zip
 *.sd

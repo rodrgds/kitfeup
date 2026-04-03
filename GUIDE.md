@@ -6,12 +6,37 @@ This guide contains only the validated workflow currently used in the KitFEUP LC
 
 - Host OS: NixOS
 - Required workflow: run builds/sync from the project root using `nix-shell shell.nix`
+- Before first build on a fresh clone, run `make setup-toolchain` (inside nix-shell)
 
 Enter shell:
 
 ```sh
 nix-shell shell.nix
+make setup-toolchain
 ```
+
+### Host Tools and libnl dependency policy
+
+- `duo-buildroot-sdk-v2/host-tools` is intentionally gitignored (large external SDK dependency).
+- `duo-buildroot-sdk-v2/build.sh` auto-clones `https://github.com/milkv-duo/host-tools.git` when `host-tools/` is missing.
+- On NixOS, run host-tools/bootstrap steps inside `nix-shell shell.nix`.
+- To pre-fetch host-tools via SDK flow, you can run:
+
+```sh
+cd duo-buildroot-sdk-v2
+./build.sh <board>
+# or
+./build.sh lunch
+```
+
+- `sysroot/` and `libnl-3.9.0/` are treated as local build dependencies and should not be committed to git history.
+- Repository setup target:
+
+```sh
+make setup-toolchain
+```
+
+This target ensures `host-tools/` is cloned (if missing) and builds static `libnl-3` + `libnl-genl-3` into `sysroot/lib` for the userspace and `libumdp` builds.
 
 ## 2) Board Baseline
 
