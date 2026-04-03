@@ -6,6 +6,8 @@ KitFEUP is a proof-of-concept repository for using the Milk-V Duo S (SG2000, RIS
 
 This repository is organized around a Nix-first development flow and a reproducible host-side automation layer.
 
+Start with `GUIDE.md` for the validated step-by-step setup and build flow.
+
 ## Scope
 
 - Host-side cross-compilation and packaging on NixOS (via `nix-shell shell.nix`)
