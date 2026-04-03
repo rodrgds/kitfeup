@@ -6,7 +6,7 @@ CC := $(ROOT_DIR)/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/
 
 INCLUDES := -I $(ROOT_DIR)/patched-umdp/umdp/ -I $(ROOT_DIR)/patched-umdp/libumdp/include/ -I $(SRC_DIR)
 INCLUDES += -I $(SRC_DIR)/timer -I $(SRC_DIR)/led -I $(SRC_DIR)/rtc
-LIBDIRS := -L $(ROOT_DIR)/patched-umdp/libumdp/build/ -L $(ROOT_DIR)/sysroot/lib/
+LIBDIRS := -L $(ROOT_DIR)/patched-umdp/libumdp/build/ -L $(ROOT_DIR)/sysroot/usr/lib/
 LIBS := -lumdp -lnl-genl-3 -lnl-3
 
 CFLAGS := -Wall -Wextra -std=gnu11

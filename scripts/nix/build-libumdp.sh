@@ -2,17 +2,27 @@
 set -euo pipefail
 
 CROSS_FILE="$ROOT_DIR/.cross-file.generated.txt"
-trap 'rm -f "$CROSS_FILE"' EXIT
+PKGCONF_WRAPPER="$ROOT_DIR/.pkg-config-sysroot.sh"
+trap 'rm -f "$CROSS_FILE" "$PKGCONF_WRAPPER"' EXIT
+
+cat > "$PKGCONF_WRAPPER" <<EOF
+#!/usr/bin/env bash
+set -euo pipefail
+unset PKG_CONFIG_SYSROOT_DIR
+export PKG_CONFIG_LIBDIR='$ROOT_DIR/sysroot/usr/lib/pkgconfig'
+exec pkg-config "\$@"
+EOF
+chmod +x "$PKGCONF_WRAPPER"
 
 cat > "$CROSS_FILE" <<EOF
 [binaries]
 c = 'riscv64-unknown-linux-musl-gcc'
 ar = 'riscv64-unknown-linux-musl-ar'
 strip = 'riscv64-unknown-linux-musl-strip'
-pkgconfig = 'pkg-config'
+pkgconfig = '$PKGCONF_WRAPPER'
 
 [properties]
-pkg_config_libdir = '$ROOT_DIR/sysroot/lib/pkgconfig'
+pkg_config_libdir = '$ROOT_DIR/sysroot/usr/lib/pkgconfig'
 
 [host_machine]
 system = 'linux'
