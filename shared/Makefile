@@ -19,6 +19,7 @@ PROGRAMS := \
 	blink_timer \
 	uptime \
 	timer_wait \
+	timer_multi \
 	asm_led \
 	asm_add \
 	asm_fib
@@ -43,14 +44,17 @@ uptime: $(SRC_DIR)/uptime.c $(SRC_DIR)/rtc/rtc.c | $(OUTDIR)
 timer_wait: $(SRC_DIR)/timer_wait.c $(SRC_DIR)/timer/timer_irq.c $(SRC_DIR)/led/led_gpio.c | $(OUTDIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/timer_wait.c $(SRC_DIR)/timer/timer_irq.c $(SRC_DIR)/led/led_gpio.c $(LIBDIRS) $(LIBS) -o $(OUTDIR)/$@
 
-asm_led: $(SRC_DIR)/assembly/asm_led_main.c $(SRC_DIR)/assembly/led_toggle.S | $(OUTDIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/assembly/asm_led_main.c $(SRC_DIR)/assembly/led_toggle.S $(LIBDIRS) $(LIBS) -o $(OUTDIR)/$@
+timer_multi: $(SRC_DIR)/timer_multi.c $(SRC_DIR)/timer/timer_multi.c $(SRC_DIR)/timer/timer_irq.c | $(OUTDIR)
+	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/timer_multi.c $(SRC_DIR)/timer/timer_multi.c $(SRC_DIR)/timer/timer_irq.c $(LIBDIRS) $(LIBS) -o $(OUTDIR)/$@
 
-asm_add: $(SRC_DIR)/assembly/asm_add_main.c $(SRC_DIR)/assembly/add.S | $(OUTDIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/assembly/asm_add_main.c $(SRC_DIR)/assembly/add.S -o $(OUTDIR)/$@
+asm_led: $(SRC_DIR)/asm_led_main.c $(SRC_DIR)/led_gpio.S | $(OUTDIR)
+	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/asm_led_main.c $(SRC_DIR)/led_gpio.S $(LIBDIRS) $(LIBS) -o $(OUTDIR)/$@
 
-asm_fib: $(SRC_DIR)/assembly/asm_fib_main.c $(SRC_DIR)/assembly/fib.S | $(OUTDIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/assembly/asm_fib_main.c $(SRC_DIR)/assembly/fib.S -o $(OUTDIR)/$@
+asm_add: $(SRC_DIR)/asm_add_main.c $(SRC_DIR)/add.S | $(OUTDIR)
+	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/asm_add_main.c $(SRC_DIR)/add.S -o $(OUTDIR)/$@
+
+asm_fib: $(SRC_DIR)/asm_fib_main.c $(SRC_DIR)/fib.S | $(OUTDIR)
+	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/asm_fib_main.c $(SRC_DIR)/fib.S -o $(OUTDIR)/$@
 
 clean:
 	rm -rf $(OUTDIR)

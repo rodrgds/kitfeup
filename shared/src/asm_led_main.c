@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <unistd.h>
+#include <signal.h>
+#include <stdbool.h>
 #include "umdp.h"
 
 /* Hardware constants from the SG2000 TRM */
@@ -18,11 +20,25 @@
 #define GPIO_SIZE 0x1000
 #define LED_PIN 29
 
-/* Tell the C compiler that this function exists in our assembly file */
-extern void toggle_led_asm(volatile uint32_t *gpio_base, uint32_t pin);
+/* Tell the C compiler that these functions exist in our assembly file */
+extern void led_set_output_asm(volatile uint32_t *gpio_base, uint32_t pin);
+extern void led_write_asm(volatile uint32_t *gpio_base, uint32_t pin, uint32_t on);
+
+static volatile sig_atomic_t running = 1;
+
+static void handle_sigint(int sig)
+{
+    (void)sig;
+    running = 0;
+}
 
 int main(void)
 {
+    struct sigaction sa = {0};
+    sa.sa_handler = handle_sigint;
+    sigemptyset(&sa.sa_mask);
+    (void)sigaction(SIGINT, &sa, NULL);
+
     umdp_connection *conn = umdp_connect();
     if (!conn)
     {
@@ -43,12 +59,20 @@ int main(void)
     printf("Executing RISC-V Assembly to toggle LED...\n");
     printf("Press Ctrl+C to stop.\n");
 
-    /* Loop forever, calling our custom Assembly function */
-    while (1)
+    led_set_output_asm(gpio_base, LED_PIN);
+
+    /* Loop forever, writing deterministic LED states from Assembly */
+    bool led_on = false;
+    while (running)
     {
-        toggle_led_asm(gpio_base, LED_PIN);
+        led_on = !led_on;
+        led_write_asm(gpio_base, LED_PIN, led_on ? 1u : 0u);
         usleep(500000); /* Sleep for 500ms so you can actually see it blink */
+
+        printf("LED is now %s\n", led_on ? "ON" : "OFF");
     }
+
+    led_write_asm(gpio_base, LED_PIN, 0u);
 
     umdp_disconnect(conn);
     return 0;

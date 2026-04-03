@@ -20,10 +20,9 @@ fib_asm:
     mv t1, t2         // shift: fib(i-2) = old fib(i-1)
     mv t2, t0         // shift: fib(i-1) = new result
     addi t3, t3, 1    // counter++
-    blt t3, a0, .Lloop  // if counter < n, continue
+    ble t3, a0, .Lloop  // if counter <= n, continue
 
-    add t0, t1, t2    // one final add for the nth number
-    mv a0, t0         // result in a0
+    mv a0, t2         // result in a0
     ret
 
 .Lbase_case:
