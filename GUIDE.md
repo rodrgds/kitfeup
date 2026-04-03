@@ -4,7 +4,7 @@ This is the ordered setup for a **new host machine** and a **new Milk-V Duo S bo
 
 ## 0) Prerequisites
 
-- Host OS: NixOS
+- Host OS: Any Linux distro with Nix installed (NixOS not required)
 - Repo cloned and submodules initialized
 
 ```sh

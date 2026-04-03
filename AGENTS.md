@@ -18,9 +18,9 @@ The immediate active phase is completing the **LCOM proof-of-concept** using the
 * **Debugging:** 3.3V USB-to-TTL UART adapter (necessary to recover from kernel panics over serial console).
 
 ## Host Environment & Build Rules (CRITICAL)
-* **Host OS:** NixOS.
+* **Host OS:** Any Linux distro with Nix installed (NixOS not required). macOS is not supported (`buildFHSEnv` is Linux-only).
 * **Rule 1:** Standard pre-compiled C toolchains downloaded by SDKs will fail instantly due to missing `/lib64` FHS paths.
-* **Rule 2:** All SDK build scripts, `make` commands, and cross-compilations MUST be executed inside the NixOS FHS sandbox. Enter this environment by running `nix-shell shell.nix` in the project root.
+* **Rule 2:** All SDK build scripts, `make` commands, and cross-compilations MUST be executed inside the Nix FHS sandbox. Enter this environment by running `nix-shell shell.nix` in the project root.
 
 ## Directory Structure Breakdown
 * `/duo-buildroot-sdk-v2`: Official SDK. Contains the `linux_5.10` kernel tree required to compile the UMDP module against the correct SG2000 kernel headers.
@@ -30,7 +30,7 @@ The immediate active phase is completing the **LCOM proof-of-concept** using the
 * `/patched-umdp`: Active UMDP source code, cross-compilation shell scripts, and the user-space library required for memory mapping physical addresses via `umdp_mmap_physical()`.
 * `/PI`: Legacy documentation, reference code, and the guide for flashing Linux to the board.
 * `/milkv.io`: Local clone of the official documentation website.
-* `shell.nix`: The NixOS FHS environment configuration.
+* `shell.nix`: The Nix FHS environment configuration (Linux only).
 
 ## Current LCOM Proof-of-Concept Milestones
 1.  Flash Buildroot Linux to the Milk-V Duo S.

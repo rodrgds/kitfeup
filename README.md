@@ -10,7 +10,7 @@ Start with [GUIDE.md](GUIDE.md) for the validated step-by-step setup and build f
 
 ## Scope
 
-- Host-side cross-compilation and packaging on NixOS (via `nix-shell shell.nix`)
+- Host-side cross-compilation and packaging on any Linux distro with Nix (via `nix-shell shell.nix`)
 - UMDP kernel module + userspace library integration on Milk-V Duo S
 - Working demos:
   - GPIO LED blink (`blink`, `blink_umdp`, `asm_led`)
