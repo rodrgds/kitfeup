@@ -4,6 +4,7 @@
 # Build directories
 build/
 _build/
+dist/
 
 # Object files
 *.o
@@ -22,6 +23,26 @@ _build/
 # Executables
 *.out
 *.exe
+
+# Local build/deploy artifacts
+shared/compiled/
+shared/umdp.ko
+*.img
+*.img.zip
+*.sd
+*.itb
+*.fip
+*.wic
+*.map
+*.dtb
+
+# Local helper/backup files
+*_backup/
+*.backup
+*.orig
+patch_*.diff
+diff.txt
+mnt_*/
 
 # Editor files
 *~
