@@ -10,6 +10,3 @@
 [submodule "milkv.io"]
 	path = milkv.io
 	url = https://github.com/milk-v/milkv.io.git
-[submodule "minix_milk_v_duo_s"]
-	path = minix_milk_v_duo_s
-	url = https://github.com/luhen39/minix_milk_v_duo_s.git

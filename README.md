@@ -24,7 +24,7 @@ This repository is organized around a Nix-first development flow and a reproduci
 - `duo-buildroot-sdk-v2/` - Milk-V SDK and kernel build tree (with local DTS/env patches)
 - `scripts/nix/` - scripted build/sync/test helpers used by root `Makefile`
 - `sg2000/` - hardware datasheets and references
-- `PI/`, `milkv.io/`, `minix_milk_v_duo_s/` - reference material repositories retained for context
+- `PI/`, `milkv.io/` - reference material repositories retained for context
 
 ## Quick Start (Nix-first)
 
