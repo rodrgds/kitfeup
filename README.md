@@ -1,5 +1,7 @@
 # KitFEUP - Milk-V Duo S LCOM PoC
 
+<img src="logo.png" alt="KitFEUP logo" width="180" />
+
 KitFEUP is a proof-of-concept repository for using the Milk-V Duo S (SG2000, RISC-V) as a low-cost teaching platform across L.EIC courses, with the current focus on the LCOM user-space driver workflow via UMDP.
 
 This repository is organized around a Nix-first development flow and a reproducible host-side automation layer.
