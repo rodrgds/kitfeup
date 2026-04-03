@@ -1,4 +1,4 @@
-# KitFEUP - Milk-V Duo S LCOM PoC
+# KitFEUP - Milk-V Duo S PoC
 
 <img src="logo.png" alt="KitFEUP logo" width="180" />
 
