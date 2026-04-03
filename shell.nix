@@ -31,7 +31,6 @@
       libxcrypt
       glibc.dev
       dtc
-      parted
       gawk
       sshpass
       mtools
