@@ -1,9 +1,9 @@
 [submodule "duo-buildroot-sdk-v2"]
 	path = duo-buildroot-sdk-v2
-	url = https://github.com/milkv-duo/duo-buildroot-sdk-v2.git
+	url = https://github.com/rodrgds/duo-buildroot-sdk-v2.git
 [submodule "patched-umdp"]
 	path = patched-umdp
-	url = https://github.com/luhen39/minix_milk_v_duo_s.git
+	url = https://github.com/rodrgds/minix_milk_v_duo_s.git
 [submodule "PI"]
 	path = PI
 	url = https://github.com/DiogoLeandro06/PI.git
