@@ -101,6 +101,8 @@ Do not `dd` `boot.sd` directly to partition raw blocks for iterative updates.
 shared/compiled/blink
 shared/compiled/blink_umdp
 shared/compiled/asm_led
+shared/compiled/asm_add
+shared/compiled/asm_fib
 shared/compiled/uptime
 shared/compiled/timer_wait
 shared/compiled/blink_timer

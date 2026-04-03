@@ -12,6 +12,7 @@ This repository is organized around a Nix-first development flow and a reproduci
 - UMDP kernel module + userspace library integration on Milk-V Duo S
 - Working demos:
   - GPIO LED blink (`blink`, `blink_umdp`, `asm_led`)
+  - Assembly demos (`asm_add`, `asm_fib`)
   - Timer interrupt wait (`timer_wait`)
   - Timer-driven LED blink (`blink_timer`)
   - Multi logical timers on one hardware IRQ tick (`timer_multi`)
