@@ -1,0 +1,11 @@
+--- patched-umdp/libumdp/src/umdp.c
++++ patched-umdp/libumdp/src/umdp.c
+@@ -128,6 +128,8 @@
+         goto failure;
+     }
+ 
++    nl_socket_modify_cb(connection->socket, NL_CB_VALID, NL_CB_CUSTOM, genl_handle_msg, connection);
++
+     ret = umdp_connect_command(connection);
+     if (ret != 0) {
+         printf_err("failed to send connect command: %s\n", nl_geterror(ret));

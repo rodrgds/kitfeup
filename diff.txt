@@ -1,0 +1,39 @@
+--- /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/install/soc_sg2000_milkv_duos_musl_riscv64_sd/stock-runtime.dts	2026-04-02 22:31:44.053612129 +0100
++++ /home/rgo/uni/kitfeup/duo-buildroot-sdk-v2/install/soc_sg2000_milkv_duos_musl_riscv64_sd/generated-boot.dts	2026-04-02 22:31:44.056015512 +0100
+@@ -170,6 +170,15 @@
+ 		interrupts = <0x3a 0x04>;
+ 	};
+ 
++	timer@030A0000 {
++		compatible = "snps,dw-apb-timer";
++		reg = <0x00 0x30a0000 0x00 0x1000>;
++		clocks = <0x06>;
++		clock-names = "timer";
++		interrupts = <0x4f 0x04>;
++		interrupt-parent = <0x04>;
++	};
++
+ 	cvi_spacc@02060000 {
+ 		reg = <0x00 0x2060000 0x00 0x1000>;
+ 		compatible = "cvitek,spacc";
+@@ -815,11 +824,6 @@
+ 		#address-cells = <0x02>;
+ 		ranges;
+ 
+-		mmode_resv0@80000000 {
+-			reg = <0x00 0x80000000 0x00 0x40000>;
+-			phandle = <0x15>;
+-		};
+-
+ 		cvifb {
+ 			alloc-ranges = <0x00 0x94c30000 0x00 0x7d0000>;
+ 			size = <0x00 0x7d0000>;
+@@ -984,8 +988,6 @@
+ 	};
+ 
+ 	chosen {
+-		boot-hartid = <0x00>;
+-		bootargs = "root=/dev/mmcblk0p3 rootwait rw console=ttyS0,115200 earlycon=sbi riscv.fwsz=0x80000 loglevel=9";
+ 		stdout-path = "serial0";
+ 
+ 		opensbi-domain {

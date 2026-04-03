@@ -1,7 +1,7 @@
 # Project Context & AI Agent Directives
 
 ## Project Overview: KitFEUP
-This repository contains the workspace for **KitFEUP**, a proof-of-concept initiative aimed at overhauling the LEIC (Licenciatura em Engenharia Informática e Computação) degree curriculum at FEUP. 
+This repository contains the workspace for **KitFEUP**, a proof-of-concept initiative aimed at overhauling the L.EIC (Licenciatura em Engenharia Informática e Computação) degree curriculum at FEUP.
 
 The ultimate goal is to provide every student with a standardized, low-cost RISC-V Single Board Computer to be used continuously across multiple disciplines:
 * **LCOM (Laboratório de Computadores):** Developing low-level device drivers and handling interrupts in user space.
@@ -27,7 +27,7 @@ The immediate active phase is completing the **LCOM proof-of-concept** using the
 * `/sg2000`: Hardware datasheets.
     * `SG2000_TRM_V1.0-alpha.pdf`: Technical Reference Manual. Use this to locate exact base hexadecimal Memory-Mapped I/O (MMIO) addresses for GPIO and Timers.
     * `duo_s_SCH_v1.1.pdf`: Board schematic. Use this to map the physical User LED to its specific SoC GPIO pin name.
-* `/linux-usermode-driver-platform` & `/minix_milk_v_duo_s`: UMDP source code, cross-compilation shell scripts, and the user-space library required for memory mapping physical addresses via `umdp_mmap_physical()`.
+* `/patched-umdp` & `/minix_milk_v_duo_s`: UMDP source code, cross-compilation shell scripts, and the user-space library required for memory mapping physical addresses via `umdp_mmap_physical()`.
 * `/PI`: Legacy documentation, reference code, and the guide for flashing Linux to the board.
 * `/milkv.io`: Local clone of the official documentation website.
 * `shell.nix`: The NixOS FHS environment configuration.

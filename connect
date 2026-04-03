@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+TARGET_USER="root"
+TARGET_IP="192.168.42.1"
+PASSWORD="milkv"
+
+echo "Connecting to KitFEUP Board ($TARGET_USER@$TARGET_IP)..."
+
+# Use sshpass to auto-fill the password and disable strict host key checking
+sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no "$TARGET_USER@$TARGET_IP"
