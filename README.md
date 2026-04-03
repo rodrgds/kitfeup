@@ -54,6 +54,9 @@ make sync-all
 ```sh
 rmmod umdp 2>/dev/null || true
 insmod shared/umdp.ko
+shared/compiled/asm_led
+shared/compiled/asm_add
+shared/compiled/asm_fib
 shared/compiled/timer_wait
 shared/compiled/blink_timer
 shared/compiled/timer_multi
