@@ -2,78 +2,57 @@
 
 <img src="logo.png" alt="KitFEUP logo" width="180" />
 
-KitFEUP is a proof-of-concept repository for using the Milk-V Duo S (SG2000, RISC-V) as a low-cost teaching platform across L.EIC courses, with the current focus on the LCOM user-space driver workflow via UMDP.
+KitFEUP is a proof-of-concept for using the Milk-V Duo S (SG2000, RISC-V) as a low-cost teaching platform, currently focused on the LCOM user-space driver workflow with UMDP.
 
-This repository is organized around a Nix-first development flow and a reproducible host-side automation layer.
+The repository now uses a CLI-first workflow:
+- host CLI: `kitfeup`
+- board CLI: `kitfeupb`
 
-Start with [GUIDE.md](GUIDE.md) for the validated step-by-step setup and build flow.
-
-## Scope
-
-- Host-side cross-compilation and packaging on any Linux distro with Nix (via `nix-shell shell.nix`)
-- UMDP kernel module + userspace library integration on Milk-V Duo S
-- Working demos:
-  - GPIO LED blink (`blink`, `blink_umdp`, `asm_led`)
-  - Assembly demos (`asm_add`, `asm_fib`)
-  - Timer interrupt wait (`timer_wait`)
-  - Timer-driven LED blink (`blink_timer`)
-  - Multi logical timers on one hardware IRQ tick (`timer_multi`)
-  - RTC uptime read (`uptime`)
-
-## Repository Layout
-
-- `shared/` - userspace demos and small driver libraries compiled for the board
-- `patched-umdp/` - active UMDP codebase used in this PoC
-- `duo-buildroot-sdk-v2/` - Milk-V SDK and kernel build tree (with local DTS/env patches)
-- `scripts/nix/` - scripted build/sync/test helpers used by root `Makefile`
-- `sg2000/` - hardware datasheets and references
-- `PI/`, `milkv.io/` - reference material repositories retained for context
-
-## Quick Start (Nix-first)
-
-1. Enter development shell:
+## Quick Start
 
 ```sh
-nix-shell shell.nix
+git clone https://github.com/rodrgds/kitfeup.git
+cd kitfeup
+git submodule update --init --recursive
+make kitfeup-cli
+./kitfeup
 ```
 
-2. Build everything:
+For complete first-time SD setup and board initialization, see [GUIDE.md](GUIDE.md).
+
+## Main Commands
+
+### Host
 
 ```sh
-make build-all
+./kitfeup
+./kitfeup doctor
+./kitfeup compile --no-sync
+./kitfeup sync
+./kitfeup image build-boot
+./kitfeup image download-latest
+./kitfeup image flash /dev/sdX
+./kitfeup image install-boot /dev/sdX1
 ```
 
-3. Sync module and binaries to board:
+### Board
 
 ```sh
-make sync-all
+kitfeupb doctor
+kitfeupb setup
+kitfeupb run timer_wait
 ```
 
-4. On board (`root@192.168.42.1`), reload module and run demos:
+## Project Layout
 
-```sh
-rmmod umdp 2>/dev/null || true
-insmod shared/umdp.ko
-shared/compiled/asm_led
-shared/compiled/asm_add
-shared/compiled/asm_fib
-shared/compiled/timer_wait
-shared/compiled/blink_timer
-shared/compiled/timer_multi
-```
-
-## Flashing Workflow (validated)
-
-For iterative kernel/DT updates, use this workflow:
-
-1. Build SDK boot artifacts (`make build-board-image`)
-2. Mount SD boot partition (`/dev/sdX1`)
-3. Copy generated `boot.sd` into mounted partition
-
-Do not patch `boot.sd` into raw image byte offsets for iterative updates.
+- `kitfeup-cli/` - host and board CLI sources/binaries
+- `shared/` - userspace demos and timer/LED libraries
+- `patched-umdp/` - active UMDP codebase
+- `duo-buildroot-sdk-v2/` - SDK + kernel/boot build tree
+- `kitfeup-cli/scripts/` - build/sync/image helper scripts used by Make/CLI
 
 ## Notes
 
-- The active UMDP path is `patched-umdp/` (the upstream copy was removed from this workspace).
-- Root-level automation assumes a local board reachable via USB ethernet defaults (`192.168.42.1`, `root`, `milkv`) and can be overridden via Make variables.
-- This repository intentionally keeps cloned reference repos as gitlinks for traceability and collaboration with the wider KitFEUP effort.
+- Host builds require Linux + Nix (`nix-shell`).
+- Default board connection expects `root@192.168.42.1` with password `milkv`.
+- Board timer demos require custom `boot.sd` from this repo's SDK build flow.

@@ -5,7 +5,7 @@ This log keeps only high-signal milestones that are relevant to the current work
 ## Milestone 1 - Nix-first host environment
 
 - Added `shell.nix` with required host tools for cross-build, packaging, and sync.
-- Standardized build/sync entrypoints via root `Makefile` and `scripts/nix/*`.
+- Standardized build/sync entrypoints via root `Makefile` and `kitfeup-cli/scripts/*`.
 
 ## Milestone 2 - UMDP operational on Milk-V Duo S
 

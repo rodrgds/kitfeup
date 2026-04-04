@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BIN="$ROOT_DIR/kitfeup-cli/bin/kitfeup"
+
+if [ ! -x "$BIN" ]; then
+  echo "[kitfeup] binary not found, building..."
+  make -C "$ROOT_DIR/kitfeup-cli" host >/dev/null
+fi
+
+exec "$BIN" "$@"

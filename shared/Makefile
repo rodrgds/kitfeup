@@ -19,6 +19,7 @@ PROGRAMS := \
 	blink_timer \
 	uptime \
 	timer_wait \
+	timer_probe \
 	timer_multi \
 	asm_led \
 	asm_add \
@@ -43,6 +44,9 @@ uptime: $(SRC_DIR)/uptime.c $(SRC_DIR)/rtc/rtc.c | $(OUTDIR)
 
 timer_wait: $(SRC_DIR)/timer_wait.c $(SRC_DIR)/timer/timer_irq.c $(SRC_DIR)/led/led_gpio.c | $(OUTDIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/timer_wait.c $(SRC_DIR)/timer/timer_irq.c $(SRC_DIR)/led/led_gpio.c $(LIBDIRS) $(LIBS) -o $(OUTDIR)/$@
+
+timer_probe: $(SRC_DIR)/timer_probe.c $(SRC_DIR)/timer/timer_irq.c | $(OUTDIR)
+	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/timer_probe.c $(SRC_DIR)/timer/timer_irq.c $(LIBDIRS) $(LIBS) -o $(OUTDIR)/$@
 
 timer_multi: $(SRC_DIR)/timer_multi.c $(SRC_DIR)/timer/timer_multi.c $(SRC_DIR)/timer/timer_irq.c | $(OUTDIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/timer_multi.c $(SRC_DIR)/timer/timer_multi.c $(SRC_DIR)/timer/timer_irq.c $(LIBDIRS) $(LIBS) -o $(OUTDIR)/$@

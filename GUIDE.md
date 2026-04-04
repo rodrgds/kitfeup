@@ -1,11 +1,32 @@
 # KitFEUP Guide
 
-This is the ordered setup for a **new host machine** and a **new Milk-V Duo S board**.
+This guide is now centered around the `kitfeup` CLI.
 
-## 0) Prerequisites
+## 0) Host environment setup
 
-- Host OS: Any Linux distro with Nix installed (NixOS not required)
-- Repo cloned and submodules initialized
+Required:
+- Linux host
+- Git
+- Nix (`nix-shell`)
+
+Install Nix (if missing):
+
+```sh
+sh <(curl -L https://nixos.org/nix/install) --daemon
+```
+
+Then restart your shell/session.
+
+Optional board connection overrides (defaults shown):
+
+```sh
+export BOARD_HOST=192.168.42.1
+export BOARD_USER=root
+export BOARD_PASS=milkv
+export BOARD_SHARED_DIR=/root/shared
+```
+
+## 1) Clone
 
 ```sh
 git clone https://github.com/rodrgds/kitfeup.git
@@ -13,125 +34,116 @@ cd kitfeup
 git submodule update --init --recursive
 ```
 
-## 1) Host Setup (new machine)
-
-From repo root:
+## 2) Build CLI binaries
 
 ```sh
-make setup-toolchain
+NO_SYNC=1 make kitfeup-cli
 ```
 
-What this does:
-- clones `duo-buildroot-sdk-v2/host-tools` if missing,
-- downloads `libnl-3.9.0` if missing,
-- builds static `libnl-3` and `libnl-genl-3`,
-- populates `sysroot/usr/{lib,include}` and pkg-config files.
+This builds:
+- host CLI: `kitfeup-cli/bin/kitfeup`
+- board CLI: `kitfeup-cli/bin/kitfeupb`
 
-Notes:
-- `duo-buildroot-sdk-v2/host-tools`, `sysroot/`, and `libnl-3.9.0/` are local dependencies and must not be committed.
+`NO_SYNC=1` is required for first setup because the board may not be ready/reachable yet.
 
-## 2) Build Host Artifacts
-
-Run all builds:
+Then run host setup and host doctor:
 
 ```sh
-make build-all
+./kitfeup setup
+./kitfeup doctor
 ```
 
-Equivalent step-by-step:
+## 3) Prepare SD card
+
+Download and flash the base image first:
 
 ```sh
-make build-libumdp
-make build-umdp-ko
-make build-shared
+./kitfeup image download-latest
+./kitfeup image flash /dev/sdX [path/to/image.img|.img.xz|.img.zip]
 ```
 
-## 3) Prepare SD Card (new Milk-V)
-
-Known-good base image: `milkv-duos-musl-riscv64-sd_v2.0.1.img`
-
-Flash once:
+Then build and install custom `boot.sd`:
 
 ```sh
-lsblk
-sudo umount /dev/sdX?* 2>/dev/null || true
-sudo dd if=milkv-duos-musl-riscv64-sd_v2.0.1.img of=/dev/sdX bs=4M conv=fsync status=progress
-sync
+./kitfeup image build-boot
+./kitfeup image install-boot /dev/sdX1
 ```
 
-## 4) Apply KitFEUP Boot Artifacts (required on first setup)
+## 4) First board boot init
 
-The base image does not include the timer-interrupt DT/kernel boot artifacts used by this project.
-Before first boot testing, build and copy `boot.sd`:
-
-```sh
-make build-board-image
-sudo mkdir -p /mnt/sdX1
-sudo mount /dev/sdX1 /mnt/sdX1
-sudo cp duo-buildroot-sdk-v2/install/soc_sg2000_milkv_duos_musl_riscv64_sd/boot.sd /mnt/sdX1/boot.sd
-sudo umount /mnt/sdX1
-sync
-```
-
-## 5) First Boot Board Init (new Milk-V)
+Insert the SD card, power on the board, and connect to it via SSH:
 
 ```sh
 ssh root@192.168.42.1
 # password: milkv
-parted -s -a opt /dev/mmcblk0 "resizepart 3 100%"
-resize2fs /dev/mmcblk0p3
-mv /mnt/system/blink.sh /mnt/system/blink.sh_backup
-sync
+```
+
+Sync the `kitfeupb` CLI to the board:
+
+```sh
+./kitfeup sync
+```
+
+On board (you can run `source /root/.profile` to get `kitfeupb` in your PATH without rebooting):
+
+```sh
+kitfeupb setup
 reboot
 ```
 
-## 6) Sync Built Artifacts to Board
+## 5) Build + sync project artifacts
 
 From host repo root:
 
 ```sh
-make sync-all
+./kitfeup
 ```
 
-Equivalent split sync:
+Default host flow:
+- setup if needed
+- build (`libumdp`, `umdp.ko`, `shared/compiled`)
+- sync to board (including `kitfeupb`)
+
+Useful variants:
 
 ```sh
-make sync-compiled
-make sync-umdp-ko
+./kitfeup compile --no-sync
+./kitfeup sync
+./kitfeup doctor
 ```
 
-On board, reload module:
+## 6) Validate on board
+
+If this is first boot, run setup first:
 
 ```sh
-rmmod umdp 2>/dev/null || true
-insmod shared/umdp.ko
+kitfeupb setup
+reboot
 ```
 
-## 7) Validate Demos on Board
+After reboot:
 
 ```sh
-shared/compiled/blink
-shared/compiled/blink_umdp
-shared/compiled/asm_led
-shared/compiled/asm_add
-shared/compiled/asm_fib
-shared/compiled/uptime
+kitfeupb doctor
 shared/compiled/timer_wait
 shared/compiled/blink_timer
 shared/compiled/timer_multi
 ```
 
-## 8) Iterative Boot Artifact Updates (no full reflash)
-
-When DT/kernel boot artifacts change:
+If UMDP module is not loaded:
 
 ```sh
-make build-board-image
-sudo mkdir -p /mnt/sdX1
-sudo mount /dev/sdX1 /mnt/sdX1
-sudo cp duo-buildroot-sdk-v2/install/soc_sg2000_milkv_duos_musl_riscv64_sd/boot.sd /mnt/sdX1/boot.sd
-sudo umount /mnt/sdX1
-sync
+insmod /root/shared/umdp.ko
 ```
 
-Do **not** `dd` `boot.sd` directly into partition raw blocks for iterative updates.
+## 7) Iterative boot updates (no full reflash)
+
+When kernel/DT changes and you only need updated `boot.sd`:
+
+```sh
+./kitfeup image build-boot
+./kitfeup image install-boot /dev/sdX1
+```
+
+Do not write `boot.sd` to raw disk offsets.
+`boot.sd` must be copied into the mounted boot partition filesystem.
