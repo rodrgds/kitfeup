@@ -2,6 +2,10 @@
 
 This guide is now centered around the `kitfeup` CLI.
 
+Two CLI binaries are built from the same source:
+- **`kitfeup`**: host CLI (runs on your Linux machine)
+- **`kitfeupb`**: board CLI (runs on the Milk-V Duo S)
+
 ## 0) Host environment setup
 
 Required:
@@ -113,15 +117,6 @@ Useful variants:
 ```
 
 ## 6) Validate on board
-
-If this is first boot, run setup first:
-
-```sh
-kitfeupb setup
-reboot
-```
-
-After reboot:
 
 ```sh
 kitfeupb doctor
