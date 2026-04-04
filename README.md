@@ -2,7 +2,7 @@
 
 <img src="logo.png" alt="KitFEUP logo" width="180" />
 
-KitFEUP is a proof-of-concept for using the Milk-V Duo S (SG2000, RISC-V) as a low-cost teaching platform, currently focused on the LCOM user-space driver workflow with UMDP.
+KitFEUP is a proof-of-concept for using the Milk-V Duo S (SG2000, RISC-V) as a low-cost teaching platform, currently focused on the LCOM user-space driver workflow with UMDP, but with potential for broader embedded/RISC-V education along the whole degree (OS, compilers, architecture, distributed systems, etc).
 
 The repository now uses a CLI-first workflow:
 - **`kitfeup`**: host CLI (runs on your Linux machine)
