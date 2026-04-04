@@ -44,38 +44,6 @@
       export PATH="$PWD/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/bin:$PATH"
     fi
 
-        compile() {
-          riscv64-unknown-linux-musl-gcc "$@"
-        }
-        export -f compile
-
-        my-compile() {
-          if [ -z "$1" ]; then
-            echo "Usage: my-compile <input-file.c> [output-file]"
-            return 1
-          fi
-
-          local INPUT=$1
-          local OUTPUT=''${2:-"''${INPUT%.c}_riscv"}
-
-          echo "Compiling $INPUT -> $OUTPUT..."
-          
-          riscv64-unknown-linux-musl-gcc \
-              -I patched-umdp/umdp/ \
-              -I patched-umdp/libumdp/include/ \
-              "$INPUT" \
-              -L patched-umdp/libumdp/build/ \
-              -L sysroot/lib/ \
-              -lumdp -lnl-genl-3 -lnl-3 \
-              -o "$OUTPUT"
-
-          if [ $? -eq 0 ]; then
-            echo "Success!"
-          else
-            echo "Compilation failed."
-          fi
-        }
-        export -f my-compile
   '';
 
   runScript = "bash";
