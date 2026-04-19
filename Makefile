@@ -41,7 +41,11 @@ check-nix:
 setup-toolchain: check-nix
 	env ROOT_DIR="$(ROOT_DIR)" $(NIX_SHELL) < "$(ROOT_DIR)/kitfeup-cli/scripts/setup-toolchain.sh"
 
-setup-toolchain-if-needed:
+setup-toolchain-if-needed: check-nix
+	@if [ ! -x "$(ROOT_DIR)/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/bin/riscv64-unknown-linux-musl-gcc" ]; then \
+		echo "[do] SDK cross compiler missing; running SDK bootstrap (./build.sh lunch)..."; \
+		env ROOT_DIR="$(ROOT_DIR)" $(NIX_SHELL) < "$(ROOT_DIR)/kitfeup-cli/scripts/bootstrap-sdk-toolchain.sh"; \
+	fi
 	@if [ ! -x "$(ROOT_DIR)/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/bin/riscv64-unknown-linux-musl-gcc" ] \
 	 || [ ! -f "$(ROOT_DIR)/sysroot/usr/lib/libnl-3.a" ] \
 	 || [ ! -f "$(ROOT_DIR)/sysroot/usr/lib/libnl-genl-3.a" ] \
@@ -145,7 +149,7 @@ do-full:
 	env ROOT_DIR="$(ROOT_DIR)" FULL_CLEAN=1 $(NIX_SHELL) < "$(ROOT_DIR)/kitfeup-cli/scripts/build-shared.sh"
 	$(MAKE) sync-all sync-kitfeupb
 
-kitfeup-cli:
+kitfeup-cli: setup-toolchain-if-needed
 	$(MAKE) -C $(ROOT_DIR)/kitfeup-cli host board
 	@if [ "$(NO_SYNC)" != "1" ]; then \
 		$(MAKE) sync-kitfeupb; \
