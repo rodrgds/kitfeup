@@ -21,6 +21,13 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 
 Then restart your shell/session.
 
+If your Linux distro restricts unprivileged user namespaces (common on hardened Ubuntu/AppArmor setups), run once before building:
+
+```sh
+sudo sysctl -w kernel.unprivileged_userns_clone=1
+sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+```
+
 Optional board connection overrides (defaults shown):
 
 ```sh
@@ -40,7 +47,20 @@ git submodule update --init --recursive
 
 ## 2) Build CLI binaries
 
+First, initialize/build the SDK toolchain manually (interactive):
+
 ```sh
+cd duo-buildroot-sdk-v2
+./build.sh lunch
+```
+
+Select the Duo S RISC-V SD target when prompted:
+- `milkv-duos-musl-riscv64-sd` (option `7`)
+
+Then return to repo root and build CLIs:
+
+```sh
+cd ..
 NO_SYNC=1 make kitfeup-cli
 ```
 
