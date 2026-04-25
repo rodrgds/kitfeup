@@ -36,7 +36,7 @@ MUSL_AR="$HOST_TOOLS_DIR/gcc/riscv64-linux-musl-x86_64/bin/riscv64-unknown-linux
 MUSL_STRIP="$HOST_TOOLS_DIR/gcc/riscv64-linux-musl-x86_64/bin/riscv64-unknown-linux-musl-strip"
 if [ ! -x "$MUSL_CC" ]; then
   echo "[setup-toolchain] Missing musl cross compiler: $MUSL_CC" >&2
-  echo "[setup-toolchain] Run SDK board setup/build first (e.g. ./build.sh lunch) to populate toolchains." >&2
+  echo "[setup-toolchain] Run the SDK board build inside nix-shell first (e.g. ./build.sh milkv-duos-musl-riscv64-sd) to populate toolchains." >&2
   exit 1
 fi
 if [ ! -x "$MUSL_AR" ]; then

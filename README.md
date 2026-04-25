@@ -53,6 +53,7 @@ kitfeupb run timer_wait
 
 ## Notes
 
-- Host builds require Linux + Nix (`nix-shell`).
+- Host builds require Linux + Nix (`nix-shell`); NixOS is not required.
+- Manual SDK commands must be run inside `nix-shell shell.nix`.
 - Default board connection expects `root@192.168.42.1` with password `milkv`.
 - Board timer demos require custom `boot.sd` from this repo's SDK build flow.

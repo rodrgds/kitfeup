@@ -37,6 +37,14 @@ export BOARD_PASS=milkv
 export BOARD_SHARED_DIR=/root/shared
 ```
 
+All manual SDK commands below must be run inside the repo's Nix shell:
+
+```sh
+nix-shell shell.nix
+```
+
+Top-level `make` targets already enter `nix-shell shell.nix` automatically.
+
 ## 1) Clone
 
 ```sh
@@ -47,22 +55,21 @@ git submodule update --init --recursive
 
 ## 2) Build CLI binaries
 
-First, initialize/build the SDK toolchain manually (interactive):
+From the repo root:
+
+```sh
+NO_SYNC=1 make kitfeup-cli
+```
+
+If you need to bootstrap the SDK manually for debugging or recovery, do it from inside `nix-shell shell.nix` and prefer the non-interactive board target:
 
 ```sh
 cd duo-buildroot-sdk-v2
-./build.sh lunch
-```
-
-Select the Duo S RISC-V SD target when prompted:
-- `milkv-duos-musl-riscv64-sd` (option `7`)
-
-Then return to repo root and build CLIs:
-
-```sh
+./build.sh milkv-duos-musl-riscv64-sd
 cd ..
-NO_SYNC=1 make kitfeup-cli
 ```
+
+This avoids the interactive `lunch` menu.
 
 This builds:
 - host CLI: `kitfeup-cli/bin/kitfeup`

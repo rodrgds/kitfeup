@@ -44,6 +44,16 @@
       export PATH="$PWD/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/bin:$PATH"
     fi
 
+    if command -v python3 >/dev/null 2>&1; then
+      kitfeup_python_wrapper_dir="$HOME/.cache/kitfeup/nix-bin"
+      if [ -n "$XDG_CACHE_HOME" ]; then
+        kitfeup_python_wrapper_dir="$XDG_CACHE_HOME/kitfeup/nix-bin"
+      fi
+      mkdir -p "$kitfeup_python_wrapper_dir"
+      ln -sf "$(command -v python3)" "$kitfeup_python_wrapper_dir/python"
+      export PATH="$kitfeup_python_wrapper_dir:$PATH"
+    fi
+
   '';
 
   runScript = "bash";
