@@ -4,8 +4,13 @@ OUTDIR := compiled
 
 CC := $(ROOT_DIR)/duo-buildroot-sdk-v2/host-tools/gcc/riscv64-linux-musl-x86_64/bin/riscv64-unknown-linux-musl-gcc
 
-INCLUDES := -I $(ROOT_DIR)/patched-umdp/umdp/ -I $(ROOT_DIR)/patched-umdp/libumdp/include/ -I $(SRC_DIR)
-INCLUDES += -I $(SRC_DIR)/timer -I $(SRC_DIR)/led -I $(SRC_DIR)/rtc
+INCLUDES := -I $(ROOT_DIR)/patched-umdp/umdp/ \
+            -I $(ROOT_DIR)/patched-umdp/libumdp/include/ \
+            -I $(SRC_DIR) \
+            -I $(SRC_DIR)/timer \
+            -I $(SRC_DIR)/led \
+            -I $(SRC_DIR)/rtc \
+            -I $(SRC_DIR)/gpio_api
 LIBDIRS := -L $(ROOT_DIR)/patched-umdp/libumdp/build/ -L $(ROOT_DIR)/sysroot/usr/lib/
 LIBS := -lumdp -lnl-genl-3 -lnl-3
 
@@ -23,7 +28,8 @@ PROGRAMS := \
 	timer_multi \
 	asm_led \
 	asm_add \
-	asm_fib
+	asm_fib \
+	buzzer_music
 
 all: $(OUTDIR) $(PROGRAMS)
 
@@ -59,6 +65,9 @@ asm_add: $(SRC_DIR)/asm_add_main.c $(SRC_DIR)/add.S | $(OUTDIR)
 
 asm_fib: $(SRC_DIR)/asm_fib_main.c $(SRC_DIR)/fib.S | $(OUTDIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/asm_fib_main.c $(SRC_DIR)/fib.S -o $(OUTDIR)/$@
+
+buzzer_music: $(SRC_DIR)/buzzer_music.c $(SRC_DIR)/timer/timer_irq.c $(SRC_DIR)/gpio_api/gpio.c | $(OUTDIR)
+	$(CC) $(CFLAGS) $(INCLUDES) $(SRC_DIR)/buzzer_music.c $(SRC_DIR)/timer/timer_irq.c $(SRC_DIR)/gpio_api/gpio.c $(LIBDIRS) $(LIBS) -o $(OUTDIR)/$@
 
 clean:
 	rm -rf $(OUTDIR)
