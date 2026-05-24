@@ -7,6 +7,7 @@
   targetPkgs =
     pkgs: with pkgs; [
       git
+      cmake
       wget
       gnumake
       gcc
@@ -27,13 +28,15 @@
       flex
       bison
       openssl
+      openssh
       openssl.dev
       libxcrypt
       glibc.dev
       dtc
       gawk
-      sshpass
+      curl
       mtools
+      perl
       ubootTools
     ];
 
